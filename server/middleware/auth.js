@@ -6,6 +6,8 @@ export const verifyToken = async (req, res, next) => {
 
     if (!token) {
       return res.status(403).send("Access Denied");
+    // The HTTP 403 Forbidden response status code indicates that the server 
+    // understands the request but refuses to authorize it.
     }
 
     if (token.startsWith("Bearer ")) {
@@ -13,7 +15,8 @@ export const verifyToken = async (req, res, next) => {
     }
 
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verified;
+    // to check if the token of the req == env.里的JWT_SECRET
+    req.user = verified; 
     next();
   } catch (err) {
     res.status(500).json({ error: err.message });

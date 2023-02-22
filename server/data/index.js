@@ -189,6 +189,7 @@ export const posts = [
   },
   {
     _id: new mongoose.Types.ObjectId(),
+    // 生成mongo专属id object
     userId: userIds[4],
     firstName: "Jane",
     lastName: "Doe",

@@ -18,11 +18,15 @@ export const createPost = async (req, res) => {
       comments: [],
     });
     await newPost.save();
+    // .save()确保数据保存到mongo db
 
     const post = await Post.find();
+    // 主页上返回所有的post
     res.status(201).json(post);
+    // post created
   } catch (err) {
     res.status(409).json({ message: err.message });
+    // post conflict
   }
 };
 
@@ -31,6 +35,7 @@ export const getFeedPosts = async (req, res) => {
   try {
     const post = await Post.find();
     res.status(200).json(post);
+    // req success
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -47,10 +52,13 @@ export const getUserPosts = async (req, res) => {
 };
 
 /* UPDATE */
+// 删除和添加like
 export const likePost = async (req, res) => {
   try {
     const { id } = req.params;
+    // 被点赞的人
     const { userId } = req.body;
+    // 点赞的人
     const post = await Post.findById(id);
     const isLiked = post.likes.get(userId);
 

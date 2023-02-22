@@ -5,11 +5,12 @@ const postSchema = mongoose.Schema(
     userId: {
       type: String,
       required: true,
+    //  required表示一定要写
     },
     firstName: {
       type: String,
       required: true,
-    },
+    },  
     lastName: {
       type: String,
       required: true,
@@ -20,7 +21,9 @@ const postSchema = mongoose.Schema(
     userPicturePath: String,
     likes: {
       type: Map,
+    //   存在mongo db里的map
       of: Boolean,
+    // 初始值一直都为true，
     },
     comments: {
       type: Array,
@@ -31,5 +34,4 @@ const postSchema = mongoose.Schema(
 );
 
 const Post = mongoose.model("Post", postSchema);
-
 export default Post;

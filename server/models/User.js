@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       max: 50,
       unique: true,
+    //   邮件为唯一
     },
     password: {
       type: String,
@@ -39,6 +40,7 @@ const UserSchema = new mongoose.Schema(
     impressions: Number,
   },
   { timestamps: true }
+//   绑定每次的时间
 );
 
 const User = mongoose.model("User", UserSchema);
